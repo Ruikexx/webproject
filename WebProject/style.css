@@ -1,0 +1,484 @@
+html,body{
+    height:100%; margin:0; font-family:sans-serif;
+    overflow:hidden; /* 禁止默认滚动条 */
+  }
+  
+  body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  .bg-video{
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    object-fit:cover; z-index:-1;
+  }
+  
+  /* Swiper */
+  .mySwiper{
+    width:100%; 
+    height:100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .swiper-wrapper {
+    height: 100%;
+  }
+  .section{
+    display:flex; justify-content:center; align-items:flex-start;
+    font-size:3rem; color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,.6);
+    padding: 40px 20px;
+    height: 100vh;
+  }
+  .s0{
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url("./picture/banner.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .s1{
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .s2{
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .s3{
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .s4{
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  /* 分页圆点 */
+  .swiper-pagination{
+    right:20px !important;
+  }
+  .swiper-pagination-bullet{
+    background:#fff; opacity:.5; width:10px; height:10px;
+    margin:8px 0 !important;
+    transition:all .3s;
+  }
+  .swiper-pagination-bullet-active{
+    opacity:1; background:#000000;
+    transform:scale(1.4);
+  }
+  
+/* 四角导航 */
+.corner-nav{
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:10;
+}
+.link{
+  position:absolute; color:#fff; text-decoration:none;
+  letter-spacing:.1em; text-transform:uppercase;
+  pointer-events:auto; font-size:18px;
+  font-weight:500;
+  pointer-events:auto;
+  padding:.4rem .2rem;
+  z-index:11;
+  transition:
+    color .2s ease,
+    font-size .25s ease,
+    font-weight .25s ease,
+    letter-spacing .25s ease,
+    transform .25s ease;
+}
+.link.tl{top:60px; left:60px;}
+.link.tr{top:60px; right:60px;}
+.link.bl{bottom:60px; left:60px;}
+.link.br{bottom:60px; right:60px;}
+.link:hover{color:#000000;}
+
+/* 下划线：统一用 scaleX，默认从左到右 */
+.link .u{
+  display:block; height:2px; background:currentColor;
+  width:100%;                 /* 自适应文字长度 */
+  margin-top:4px;
+  transform:scaleX(0);
+  transform-origin:left;       /* 默认从左开始 */
+  transition:transform .55s cubic-bezier(.19,1,.22,1);
+}
+
+/* 右侧两个：文字与下划线都靠右，从右往左画 */
+.link.tr, .link.br{
+  text-align:right;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:flex-end;        /* 让 .u 贴右边 */
+}
+.link.tr .u, .link.br .u{
+  margin-left:auto;            /* 推到右侧 */
+  transform-origin:right;      /* 从右开始画 */
+}
+
+/* 悬停/聚焦时展开 */
+.link:hover .u,
+.link:focus-visible .u{
+  transform:scaleX(1);
+}
+
+
+.link.is-active .u{
+  transform:scaleX(1);        /* 高亮时下划线常驻 */
+  height:3px;              /* 线更粗一点 */
+}
+
+/* Section 内容样式 */
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin-top: 0;
+}
+
+
+/* Project Showcase */
+.project-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.project-details {
+  /* 空的样式，用于保持布局结构 */
+}
+
+/* About Section */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+.about-text ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-text li {
+  margin-bottom: 0.3rem;
+  padding-left: 1.2rem;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.about-text li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #000000;
+  font-weight: bold;
+}
+
+.team-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #000000;
+  text-align: center;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.team-member {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+.member-photo .placeholder-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 0.5rem;
+  font-size: 0.7rem;
+}
+
+.team-member h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #000000;
+}
+
+.team-member p {
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+/* Kudos Section */
+.kudos-content {
+  margin-top: 1.5rem;
+}
+
+.awards-section, .testimonials-section {
+  margin-bottom: 1.5rem;
+}
+
+.awards-section h2, .testimonials-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.award-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.award-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.award-item h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #000000;
+}
+
+.award-item p {
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.testimonial-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.testimonial-content p {
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.testimonial-author h4 {
+  color: #000000;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.testimonial-author p {
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+/* Contact Section */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.contact-info h2, .contact-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+  width: 30px;
+  text-align: center;
+}
+
+.contact-item h3 {
+  color: #000000;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.contact-item p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.8rem;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #000000;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(244, 182, 182, 0.3);
+}
+
+.submit-btn {
+  background: #000000;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: #000000;
+  transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  /* 标题样式已移除 */
+  
+  .project-showcase {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .project-image .placeholder-image {
+    height: 200px;
+  }
+  
+  .project-details {
+    text-align: center;
+  }
+  
+  .about-content,
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .awards-grid,
+  .testimonials-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-details {
+    gap: 0.5rem;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+  }
+}
